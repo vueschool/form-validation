@@ -14,16 +14,22 @@
   <form @submit.prevent="submitForm" autocomplete="off">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input v-model="form.name" id="name">
-      <p v-if="$v.form.name.$invalid" class="error-message">The name field is required</p>
+      <input v-model="$v.form.name.$model"
+             id="name"
+      >
+      <p v-if="$v.form.name.$error" class="error-message">The name field is required</p>
+      <p>Invalid: {{$v.form.name.$invalid}} | Dirty: {{$v.form.name.$dirty}} | Error: {{$v.form.name.$error}}</p>
+      <!-- $error === $invalid && $dirty -->
     </div>
 
     <div class="form-group">
       <label for="age">Age:</label>
-      <input v-model.number="form.age" id="age">
-      <p v-if="!$v.form.age.required" class="error-message">The age field is required</p>
-      <p v-else-if="!$v.form.age.integer" class="error-message">The age field should be an integer</p>
-      <p v-else-if="!$v.form.age.between" class="error-message">You should be at least 12 and younger than 120 to continue</p>
+      <input v-model.number="$v.form.age.$model" id="age">
+      <div v-if="$v.form.age.$error">
+        <p v-if="!$v.form.age.required" class="error-message">The age field is required</p>
+        <p v-else-if="!$v.form.age.integer" class="error-message">The age field should be an integer</p>
+        <p v-else-if="!$v.form.age.between" class="error-message">You should be at least 12 and younger than 120 to continue</p>
+      </div>
     </div>
 
     <div>
