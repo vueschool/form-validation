@@ -14,7 +14,8 @@
   <form @submit.prevent="submitForm" autocomplete="off">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input v-model="$v.form.name.$model"
+      <input v-model="form.name"
+             @blur="$v.form.name.$touch()"
              :class="{error: $v.form.name.$error, valid: !$v.form.name.$invalid}"
              id="name"
       >
@@ -23,7 +24,8 @@
 
     <div class="form-group">
       <label for="age">Age:</label>
-      <input v-model.number="$v.form.age.$model"
+      <input v-model.number="form.age"
+             @blur="$v.form.age.$touch()"
              :class="{error: $v.form.age.$error, valid: !$v.form.age.$invalid}"
              id="age"
       >
