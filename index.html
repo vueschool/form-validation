@@ -16,7 +16,7 @@
       <label for="name">Name:</label>
       <input v-model="form.name"
              @blur="$v.form.name.$touch()"
-             :class="{error: $v.form.name.$error, valid: !$v.form.name.$invalid}"
+             :class="{error: shouldAppendErrorClass($v.form.name), valid: shouldAppendValidClass($v.form.name)}"
              id="name"
       >
       <p v-if="$v.form.name.$error" class="error-message">The name field is required</p>
@@ -26,7 +26,7 @@
       <label for="age">Age:</label>
       <input v-model.number="form.age"
              @blur="$v.form.age.$touch()"
-             :class="{error: $v.form.age.$error, valid: !$v.form.age.$invalid}"
+             :class="{error: shouldAppendErrorClass($v.form.age), valid: shouldAppendValidClass($v.form.age)}"
              id="age"
       >
       <div v-if="$v.form.age.$error">
@@ -41,7 +41,7 @@
       <label for="email">Email:</label>
       <input v-model="form.email"
              @blur="$v.form.email.$touch()"
-             :class="{error: $v.form.email.$error, valid: !$v.form.email.$invalid && form.email}"
+             :class="{error: shouldAppendErrorClass($v.form.email), valid: shouldAppendValidClass($v.form.email)}"
              id="email"
       >
       <p v-if="!$v.form.email.email && $v.form.email.$error" class="error-message">Invalid email address</p>
