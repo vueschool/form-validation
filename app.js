@@ -1,5 +1,8 @@
 Vue.use(vuelidate.default)
 
+const pizzaOrBurger = value => value === 'pizza' || value === 'burger' || !validators.helpers.req(value)
+const oldEnoughAndAlive = validators.between(12, 120)
+
 new Vue({
   el: '#app',
 
@@ -8,7 +11,8 @@ new Vue({
       form: {
         name: null,
         age: null,
-        email: null
+        email: null,
+        food: null
       }
     }
   },
@@ -22,11 +26,15 @@ new Vue({
       age: {
         required: validators.required, // $v.form.age.required
         integer: validators.integer, // $v.form.age.integer
-        between: validators.between(12, 120) // $v.form.age.between
+        oldEnoughAndAlive // $v.form.age.oldEnoughAndAlive
       },
 
       email: {
         email: validators.email
+      },
+
+      food: {
+        pizzaOrBurger
       }
     }
   },
