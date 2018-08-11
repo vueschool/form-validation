@@ -36,6 +36,17 @@
       </div>
     </div>
 
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input v-model="form.email"
+             @blur="$v.form.email.$touch()"
+             :class="{error: $v.form.email.$error, valid: !$v.form.email.$invalid && form.email}"
+             id="email"
+      >
+      <p v-if="!$v.form.email.email && $v.form.email.$error" class="error-message">Invalid email address</p>
+    </div>
+
     <div>
       <button>Submit</button>
     </div>

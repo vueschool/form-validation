@@ -7,7 +7,8 @@ new Vue({
     return {
       form: {
         name: null,
-        age: null
+        age: null,
+        email: null
       }
     }
   },
@@ -22,6 +23,10 @@ new Vue({
         required: validators.required, // $v.form.age.required
         integer: validators.integer, // $v.form.age.integer
         between: validators.between(12, 120) // $v.form.age.between
+      },
+
+      email: {
+        email: validators.email
       }
     }
   },
