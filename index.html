@@ -56,6 +56,16 @@
     </div>
 
 
+    <div class="form-group github-username">
+      <label for="github-username">GitHub username:</label>
+      <input v-model.lazy="$v.form.githubUsername.$model"
+             :class="{error: shouldAppendErrorClass($v.form.githubUsername), valid: shouldAppendValidClass($v.form.githubUsername)}"
+             id="github-username"
+      >
+      <span v-show="$v.form.githubUsername.$pending" class="fa fa-spinner fa-spin"></span>
+      <p v-if="!$v.form.githubUsername.exists && $v.form.githubUsername.$error" class="error-message">There is not GitHub user with this username</p>
+    </div>
+
     <div class="form-group">
       <label for="food">Pizza Or Burger:</label>
       <input v-model.number="form.food"
@@ -72,6 +82,7 @@
   </form>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
